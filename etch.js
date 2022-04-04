@@ -1,7 +1,8 @@
 const canvas = document.getElementById('canvas');
 const resetBtn = document.getElementById('reset');
+let drawing = false;
 
-let size = 30;
+let size = 16;
 
 function drawCanvas(size) {
     const width = `${canvas.clientWidth/size}px`;
@@ -17,9 +18,8 @@ function drawCanvas(size) {
 drawCanvas(size);
 
 
-function handleCanvasClick(e) {
-    const target = e.target;
-    target.style.backgroundColor = 'blue';
+function toggleDrawing(e) {
+    drawing = !drawing;
 }
 
 function resetCanvas() {
@@ -28,6 +28,16 @@ function resetCanvas() {
 
 }
 
-canvas.addEventListener('click', handleCanvasClick);
+function drawCell(e) {
+    let target = e.target;
+    if (drawing || e.type === 'click') {
+        target.style.backgroundColor = 'blue';
+    } 
+}
+
+canvas.addEventListener('mousedown', toggleDrawing);
+canvas.addEventListener('mouseup', toggleDrawing);
+canvas.addEventListener('mousemove', drawCell);
+canvas.addEventListener('click', drawCell);
 resetBtn.addEventListener('click', resetCanvas);
 

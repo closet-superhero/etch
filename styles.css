@@ -3,6 +3,9 @@
     margin: 0;
     padding: 0;
 }
+:root {
+    --canvas-size: 550px;
+}
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -17,8 +20,8 @@ body {
 .canvas {
     display: flex;
     flex-flow: row wrap;
-    width: 660px;
-    height: 660px;
+    width: var(--canvas-size);
+    height: var(--canvas-size);
     box-shadow: none;
 }
 .container {
