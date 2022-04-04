@@ -1,10 +1,11 @@
 const canvas = document.getElementById('canvas');
+const resetBtn = document.getElementById('reset');
 
-let size = 10;
-const width = `${canvas.clientWidth/size}px`;
-const height = `${canvas.clientHeight/size}px`;
+let size = 30;
 
 function drawCanvas(size) {
+    const width = `${canvas.clientWidth/size}px`;
+    const height = `${canvas.clientHeight/size}px`;
     for (let i=0; i<size**2; i++) {
         const node = document.createElement('div');
         node.classList.add('cell');
@@ -16,9 +17,17 @@ function drawCanvas(size) {
 drawCanvas(size);
 
 
-function handleClick(e) {
-    const cell = e.target;
-    cell.style.backgroundColor = 'blue';
+function handleCanvasClick(e) {
+    const target = e.target;
+    target.style.backgroundColor = 'blue';
 }
 
-canvas.addEventListener('click', handleClick);
+function resetCanvas() {
+    canvas.textContent = '';
+    drawCanvas(size);
+
+}
+
+canvas.addEventListener('click', handleCanvasClick);
+resetBtn.addEventListener('click', resetCanvas);
+
