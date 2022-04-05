@@ -1,7 +1,13 @@
 const canvas = document.getElementById('canvas');
 const resetBtn = document.getElementById('reset');
+const slider = document.getElementById('slider');
+const sliderLabel = document.getElementById('slider-label');
 let drawing = false;
 
+slider.min = '10';
+slider.max = '100';
+slider.defaultValue = '16';
+sliderLabel.textContent = slider.value;
 let size = 16;
 
 function drawCanvas(size) {
@@ -35,9 +41,20 @@ function drawCell(e) {
     } 
 }
 
+function updateSliderLabel(e) {
+    sliderLabel.textContent = `Size: ${this.value}`;
+}
+
+function setSize(e) {
+    size = this.value;
+    resetCanvas();
+}
+
 canvas.addEventListener('mousedown', toggleDrawing);
 canvas.addEventListener('mouseup', toggleDrawing);
 canvas.addEventListener('mousemove', drawCell);
 canvas.addEventListener('click', drawCell);
 resetBtn.addEventListener('click', resetCanvas);
+slider.addEventListener('input', updateSliderLabel);
+slider.addEventListener('change', setSize);
 
