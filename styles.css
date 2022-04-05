@@ -12,6 +12,8 @@ body {
 .cell {
     background-color: red;
     flex: auto;
+}
+.outline {
     outline: black solid 1px;
 }
 .cell:hover {

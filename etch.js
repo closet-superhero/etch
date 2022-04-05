@@ -2,13 +2,14 @@ const canvas = document.getElementById('canvas');
 const resetBtn = document.getElementById('reset');
 const slider = document.getElementById('slider');
 const sliderLabel = document.getElementById('slider-label');
+const optionGrid = document.getElementById('grid-option');
 let drawing = false;
 
 slider.min = '10';
 slider.max = '100';
-slider.defaultValue = '16';
-sliderLabel.textContent = slider.value;
 let size = 16;
+slider.defaultValue = size.toString();
+sliderLabel.textContent = slider.defaultValue;
 
 function drawCanvas(size) {
     const width = `${canvas.clientWidth/size}px`;
@@ -20,9 +21,8 @@ function drawCanvas(size) {
         node.style.width = width;
         canvas.appendChild(node);
     }
+    toggleGrid();
 }
-drawCanvas(size);
-
 
 function toggleDrawing(e) {
     drawing = !drawing;
@@ -50,6 +50,19 @@ function setSize(e) {
     resetCanvas();
 }
 
+function toggleGrid(e) {
+    const children = canvas.children;
+    if (this.checked || optionGrid.checked) {
+        for (let i=0; i<children.length; i++){
+            children.item(i).classList.add('outline');
+        }
+    } else {
+        for (let i=0; i<children.length; i++){
+            children.item(i).classList.remove('outline');
+        }
+    }
+}
+
 canvas.addEventListener('mousedown', toggleDrawing);
 canvas.addEventListener('mouseup', toggleDrawing);
 canvas.addEventListener('mousemove', drawCell);
@@ -57,4 +70,5 @@ canvas.addEventListener('click', drawCell);
 resetBtn.addEventListener('click', resetCanvas);
 slider.addEventListener('input', updateSliderLabel);
 slider.addEventListener('change', setSize);
-
+optionGrid.addEventListener('input', toggleGrid)
+drawCanvas(size);
