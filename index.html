@@ -10,16 +10,30 @@
 </head>
 <body>
     <div id="container" class="container">
-        <h1>Etch-a-Sketch</h1>
-        <div id="controls" class="controls">
-            <button id="reset">Reset</button>
-            <input type="range" name="canvas-size" id="slider">
+        <div id="control-section" class="control-section">
+            <div class="control-item">
+                <button id="reset">Reset</button>
+            </div>
             <label id="slider-label" for="canvas-size">Size:</label>
-            <input id="grid-option" type="checkbox" name="grid">
-            <label for="grid">Display Grid</label>
+            <div class="control-item">
+                <input type="range" name="canvas-size" id="slider">
+            </div>
+            <div class="control-item">
+                <label for="draw-color">Choose Color:</label>
+                <input id="draw-color" name="draw-color" type="color" value="#0000ff">
+            </div>
+            <div class="control-item">
+                <label for="bg-color">Background Color:</label>
+                <input id="bg-color" name="bg-color" type="color" value="#ffffff">
+            </div>
+            <div class="control-item">
+                <input id="grid-option" type="checkbox" name="grid">
+                <label for="grid">Display Grid</label>
+            </div>
         </div>
-        <div id="canvas" class="canvas">
-
+        <div class="canvas-section">
+            <div id="canvas" class="canvas">
+            </div>
         </div>
     </div>
 </body>

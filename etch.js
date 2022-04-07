@@ -4,12 +4,15 @@ const slider = document.getElementById('slider');
 const sliderLabel = document.getElementById('slider-label');
 const optionGrid = document.getElementById('grid-option');
 let drawing = false;
+let drawColor = 'blue';
+const drawColorPicker = document.getElementById('draw-color');
+const bgColorPicker = document.getElementById('bg-color');
 
 slider.min = '10';
 slider.max = '100';
 let size = 16;
 slider.defaultValue = size.toString();
-sliderLabel.textContent = slider.defaultValue;
+sliderLabel.textContent = `Size: ${slider.defaultValue}`;
 
 function drawCanvas(size) {
     const width = `${canvas.clientWidth/size}px`;
@@ -36,8 +39,10 @@ function resetCanvas() {
 
 function drawCell(e) {
     let target = e.target;
-    if (drawing || e.type === 'click') {
-        target.style.backgroundColor = 'blue';
+    if (target.id === 'canvas'){
+        return;
+    } else if (drawing || e.type === 'click') {
+        target.style.backgroundColor = drawColor;
     } 
 }
 
@@ -63,6 +68,17 @@ function toggleGrid(e) {
     }
 }
 
+function changeColor(e){
+    switch(this.id){
+        case 'bg-color': 
+            canvas.style.backgroundColor = this.value;
+            break;
+        case 'draw-color':
+            drawColor = this.value;
+            break;
+    }
+}
+
 canvas.addEventListener('mousedown', toggleDrawing);
 canvas.addEventListener('mouseup', toggleDrawing);
 canvas.addEventListener('mousemove', drawCell);
@@ -70,5 +86,7 @@ canvas.addEventListener('click', drawCell);
 resetBtn.addEventListener('click', resetCanvas);
 slider.addEventListener('input', updateSliderLabel);
 slider.addEventListener('change', setSize);
-optionGrid.addEventListener('input', toggleGrid)
+optionGrid.addEventListener('input', toggleGrid);
+drawColorPicker.addEventListener('change', changeColor);
+bgColorPicker.addEventListener('change', changeColor);
 drawCanvas(size);

@@ -8,29 +8,45 @@
 }
 body {
     font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    display: flex;
+    background-color: aliceblue;
 }
 .cell {
-    background-color: red;
     flex: auto;
 }
 .outline {
-    outline: black solid 1px;
+    outline: black solid 0.5px;
 }
 .cell:hover {
-    background-color: blue;
+    background-color: rgba(50, 49, 49, 0.284);
+}
+.canvas-section {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: center;
+
 }
 .canvas {
     display: flex;
     flex-flow: row wrap;
     width: var(--canvas-size);
     height: var(--canvas-size);
-    box-shadow: none;
+    box-shadow: #707070 0 0 10px;
+    background-color: white;
 }
 .container {
     display: flex;
+    align-items: center;
+    
+}
+.control-section {
+    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: stretch;
+    width: 250px;
 }
-.controls {
-    display: flex;
+.control-item{
+    flex: 1;
 }
