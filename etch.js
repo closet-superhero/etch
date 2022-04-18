@@ -28,8 +28,12 @@ function drawCanvas(size) {
 }
 
 function toggleDrawing(e) {
-    e.preventDefault();
-    drawing = !drawing;
+    e.preventDefault(); // stop drag behavior
+    if ((this == canvas) && (e.type == 'mousedown')) {
+        drawing = true;
+    } else if (e.type == 'mouseup') {
+        drawing = false;
+    }
 }
 
 function resetCanvas() {
@@ -81,7 +85,7 @@ function changeColor(e){
 }
 
 canvas.addEventListener('mousedown', toggleDrawing);
-canvas.addEventListener('mouseup', toggleDrawing);
+document.addEventListener('mouseup', toggleDrawing);
 canvas.addEventListener('mousemove', drawCell);
 canvas.addEventListener('click', drawCell);
 resetBtn.addEventListener('click', resetCanvas);
