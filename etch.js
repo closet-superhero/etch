@@ -10,8 +10,8 @@ const bgColorPicker = document.getElementById('bg-color');
 
 slider.min = '10';
 slider.max = '100';
-let size = 16;
-slider.defaultValue = size.toString();
+let canvasSize = 16;
+slider.defaultValue = canvasSize.toString();
 sliderLabel.textContent = `Size: ${slider.defaultValue}`;
 
 function drawCanvas(size) {
@@ -28,12 +28,13 @@ function drawCanvas(size) {
 }
 
 function toggleDrawing(e) {
+    e.preventDefault();
     drawing = !drawing;
 }
 
 function resetCanvas() {
-    canvas.textContent = '';
-    drawCanvas(size);
+    canvas.replaceChildren();
+    drawCanvas(canvasSize);
 
 }
 
@@ -51,13 +52,13 @@ function updateSliderLabel(e) {
 }
 
 function setSize(e) {
-    size = this.value;
+    canvasSize = this.value;
     resetCanvas();
 }
 
 function toggleGrid(e) {
     const children = canvas.children;
-    if (this.checked || optionGrid.checked) {
+    if (optionGrid.checked) {
         for (let i=0; i<children.length; i++){
             children.item(i).classList.add('outline');
         }
@@ -89,4 +90,4 @@ slider.addEventListener('change', setSize);
 optionGrid.addEventListener('input', toggleGrid);
 drawColorPicker.addEventListener('change', changeColor);
 bgColorPicker.addEventListener('change', changeColor);
-drawCanvas(size);
+drawCanvas(canvasSize);

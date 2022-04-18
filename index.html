@@ -9,13 +9,14 @@
     <title>Etch-a-Sketch js</title>
 </head>
 <body>
+    <h1>Etch-a-Sketch js</h1>
     <div id="container" class="container">
         <div id="control-section" class="control-section">
             <div class="control-item">
                 <button id="reset">Reset</button>
             </div>
-            <label id="slider-label" for="canvas-size">Size:</label>
             <div class="control-item">
+                <label id="slider-label" for="slider">Size:</label>
                 <input type="range" name="canvas-size" id="slider">
             </div>
             <div class="control-item">
@@ -27,8 +28,8 @@
                 <input id="bg-color" name="bg-color" type="color" value="#ffffff">
             </div>
             <div class="control-item">
+                <label for="grid-option">Show Grid</label>
                 <input id="grid-option" type="checkbox" name="grid">
-                <label for="grid">Display Grid</label>
             </div>
         </div>
         <div class="canvas-section">
